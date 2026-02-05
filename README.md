@@ -2,6 +2,7 @@
 
 Accurate and fast cell marker gene identification with COSG
 
+> **⚠️ Version Notice:** This fork has been adapted for **Seurat v5** compatibility. The `slot` parameter has been replaced with `layer` throughout. For the original Seurat v4 version, please visit the [official COSG repository](https://github.com/genecell/COSGR).
 
 COSG is a cosine similarity-based method for more accurate and scalable marker gene identification.
 
@@ -14,15 +15,18 @@ The method and benchmarking results are described in [Dai et al., (2022)](https:
 Here is the R version for COSG, and the python version is hosted in https://github.com/genecell/COSG.
 
 ### Installation
-```
+```r
 # install.packages('remotes')
 remotes::install_github(repo = 'genecell/COSGR')
 ```
 
+**For Seurat v5 users:** This version uses `layer='data'` instead of the deprecated `slot='data'` parameter.
+
+**For Seurat v4 users:** Please use the original [genecell/COSGR](https://github.com/genecell/COSGR) repository.
+
 ### Usage
 
 Please check out the [vignette](https://github.com/genecell/COSGR/blob/master/vignettes/quick_start.Rmd) and the [PBMC10K tutorial](https://github.com/genecell/COSGR/blob/master/vignettes/pbmc10k_tutorial_cosg.Rmd) to get started.
-
 
 Note I: we released our Python toolkit, [PIASO](https://piaso.org), in which some methods were built upon COSG.
 
@@ -36,12 +40,12 @@ table(Idents(pbmc_small))
 #>  0  1  2 
 #> 36 25 19 
 #######
-# Run COSG:
+# Run COSG (Seurat v5 syntax):
 marker_cosg <- cosg(
  pbmc_small,
  groups='all',
  assay='RNA',
- layer='data',
+ layer='data',  # Note: 'layer' for Seurat v5 (was 'slot' in v4)
  mu=1,
  n_genes_user=100)
 #######
