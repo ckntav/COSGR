@@ -14,11 +14,16 @@ The method and benchmarking results are described in [Dai et al., (2022)](https:
 Here is the R version for COSG, and the python version is hosted in https://github.com/genecell/COSG.
 
 ### Installation
-
 ```
 # install.packages('remotes')
 remotes::install_github(repo = 'genecell/COSGR')
 ```
+
+### Compatibility Note
+
+**For Seurat v5 users:** This version has been updated for compatibility with Seurat v5.0.0+, which replaced the `slot` parameter with `layer`. All examples below use `layer='data'` for Seurat v5 compatibility.
+
+**For Seurat v4 users:** If you are using Seurat v4, replace `layer='data'` with `slot='data'` in all examples.
 
 ### Usage
 
@@ -28,9 +33,7 @@ Please check out the [vignette](https://github.com/genecell/COSGR/blob/master/vi
 Note I: we released our Python toolkit, [PIASO](https://piaso.org), in which some methods were built upon COSG.
 
 Note II: we have also recently released [PIASOmarkerDB](https://piaso.org/piasomarkerdb), a cell type marker gene database for the single-cell and spatial transcriptomics community!
-
-
-```
+```r
 suppressMessages(library(Seurat))
 data('pbmc_small',package='Seurat')
 # Check cell groups:
@@ -44,7 +47,7 @@ marker_cosg <- cosg(
  pbmc_small,
  groups='all',
  assay='RNA',
- slot='data',
+ layer='data',
  mu=1,
  n_genes_user=100)
 #######
@@ -65,13 +68,13 @@ marker_cosg <- cosg(
 #> 4 0.6164937 0.7755955 0.5533107
 #> 5 0.5846589 0.7413060 0.5163446
 #> 6 0.5795238 0.7380483 0.5115180
-####### Run COSG for selected groups, i.e., '0' and 2':
+####### Run COSG for selected groups, i.e., '0' and '2':
 #######
 marker_cosg <- cosg(
  pbmc_small,
  groups=c('0', '2'),
  assay='RNA',
- slot='data',
+ layer='data',
  mu=1,
  n_genes_user=100)
 ```
@@ -79,12 +82,12 @@ marker_cosg <- cosg(
 ### Tip
 1. If you would like to identify more specific marker genes, you could assign `mu` to larger values, such as `mu=10` or `mu=100`.
 2. You could set the parameter `remove_lowly_expressed` to `TRUE` to not consider genes expressed very lowly in the target cell group, and you can use the parameter `expressed_pct` to adjust the threshold for the percentage. For example:
-```
-marker_region<-cosg(
+```r
+marker_region <- cosg(
     seo,
   groups='all',
   assay='peaks',
-  slot='data',
+  layer='data',
   mu=100,
   n_genes_user=100,
   remove_lowly_expressed=TRUE,
@@ -94,4 +97,4 @@ marker_region<-cosg(
 
 ### Citation
 
-If COSG is useful for your research, please consider citing [Dai, M., Pei, X., Wang, X.-J., 2022. Accurate and fast cell marker gene identification with COSG. Brief. Bioinform. bbab579](https://academic.oup.com/bib/advance-article-abstract/doi/10.1093/bib/bbab579/6511197?redirectedFrom=fulltext). 
+If COSG is useful for your research, please consider citing [Dai, M., Pei, X., Wang, X.-J., 2022. Accurate and fast cell marker gene identification with COSG. Brief. Bioinform. bbab579](https://academic.oup.com/bib/advance-article-abstract/doi/10.1093/bib/bbab579/6511197?redirectedFrom=fulltext).
