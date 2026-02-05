@@ -19,12 +19,6 @@ Here is the R version for COSG, and the python version is hosted in https://gith
 remotes::install_github(repo = 'genecell/COSGR')
 ```
 
-### Compatibility Note
-
-**For Seurat v5 users:** This version has been updated for compatibility with Seurat v5.0.0+, which replaced the `slot` parameter with `layer`. All examples below use `layer='data'` for Seurat v5 compatibility.
-
-**For Seurat v4 users:** If you are using Seurat v4, replace `layer='data'` with `slot='data'` in all examples.
-
 ### Usage
 
 Please check out the [vignette](https://github.com/genecell/COSGR/blob/master/vignettes/quick_start.Rmd) and the [PBMC10K tutorial](https://github.com/genecell/COSGR/blob/master/vignettes/pbmc10k_tutorial_cosg.Rmd) to get started.
