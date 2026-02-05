@@ -15,14 +15,21 @@ The method and benchmarking results are described in [Dai et al., (2022)](https:
 Here is the R version for COSG, and the python version is hosted in https://github.com/genecell/COSG.
 
 ### Installation
+
+**For Seurat v5 users:** This version uses `layer='data'` instead of the deprecated `slot='data'` parameter.
+
+```r
+# install.packages('remotes')
+remotes::install_github(repo = 'ckntav/COSGR')
+```
+
+
+**For Seurat v4 users:** Please use the original [genecell/COSGR](https://github.com/genecell/COSGR) repository.
+
 ```r
 # install.packages('remotes')
 remotes::install_github(repo = 'genecell/COSGR')
 ```
-
-**For Seurat v5 users:** This version uses `layer='data'` instead of the deprecated `slot='data'` parameter.
-
-**For Seurat v4 users:** Please use the original [genecell/COSGR](https://github.com/genecell/COSGR) repository.
 
 ### Usage
 
